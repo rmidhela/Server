@@ -3,6 +3,7 @@ const router = express.Router();
 const Expense = require('../models/expense');
 const jwt = require('jsonwebtoken');
 
+
 const secretKey = process.env.SECRET_KEY || 'your_secret_key'; // Should be in an environment variable
 
 // Middleware to authenticate and attach user to request

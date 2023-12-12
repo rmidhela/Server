@@ -3,6 +3,7 @@ const router = express.Router();
 const User = require('../models/User');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const authenticate = require('../authMiddleware');
 
 // Secret key should ideally be stored in an environment variable
 const secretKey = process.env.SECRET_KEY || 'your_secret_key';
@@ -62,6 +63,5 @@ router.get('/userdata', authenticate, async (req, res) => {
         res.status(500).send({ message: 'Error fetching user data', error: error.message });
     }
 });
-
 
 module.exports = router;

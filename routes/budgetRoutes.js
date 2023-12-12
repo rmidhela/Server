@@ -32,6 +32,14 @@ router.post('/', authenticate, async (req, res) => {
     }
 });
 
-// Additional routes can be added here for fetching and managing budgets
+// GET route to fetch budgets for a specific user
+router.get('/', authenticate, async (req, res) => {
+    try {
+        const userBudgets = await Budget.find({ user: req.userData.userId });
+        res.status(200).json(userBudgets);
+    } catch (error) {
+        res.status(500).send({ message: 'Error fetching budgets', error: error.message });
+    }
+});
 
 module.exports = router;
